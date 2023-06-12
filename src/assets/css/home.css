@@ -28,3 +28,34 @@ body{
 .card-img-top:hover{
     transform: scale(1.2);
 }
+
+.slide-swipe img{
+    height: 500px;
+    width: 1520px;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.sld{
+    background: black;
+    overflow: hidden;
+}
+
+.road-box {
+    margin:15px !important;
+    margin-left: 40px !important;
+}
+
+.button-div button{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.block-head{
+    text-align: center;
+}
+
+.block-para p {
+    padding: 15px;
+}

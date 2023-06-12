@@ -5,6 +5,17 @@
   padding: 0;
   box-sizing: border-box;
 }
-body{
+
+body {
   font-family: "roboto", "sans-serif";
+}
+
+/* Css for block.jsx*/
+
+
+.outer-wrapper.both {
+  padding-top: 0;
+  padding-bottom: 0;
+  clip-path: none !important;
+  transform: skewY(-2deg);
 }

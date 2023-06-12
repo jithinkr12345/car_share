@@ -1,23 +1,28 @@
 import './App.css';
 import Navbar from "./components/Navbar";
-import Homes from "./pages/Home";
-import Slider from "./components/Slider";
-import TwoButton from "./components/Twobuttons"
-import {BrowserRouter} from 'react-router-dom';
+import Home from "./pages/Home";
+import Rider from "./pages/Rider";
+import Dashboard from "./pages/Dashboard";
+import { Route, Routes} from "react-router-dom";
+import './assets/css/Dashboard.css';
+
 
 function App() {
 	return (
 		<>
-			<BrowserRouter>
-				<Navbar />
-				<div className="App">
-					<Slider />
-			 		<Homes />
-			 		<TwoButton />
-				</div>
-			</BrowserRouter>
+			<Navbar />
+			<div className="">
+				<Routes>
+				<Route path='/' element={<Home/>} />
+				<Route path='/rider' element={<Rider/>} />
+				<Route path='/dashboard' element={<Dashboard/>} />
+				</Routes>
+			</div>
 		</>
 	);
 }
+
+// CSS hi CSS hain har jagah
+
 
 export default App;

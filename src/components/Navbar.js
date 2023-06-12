@@ -4,6 +4,7 @@ import LocalTaxiIcon from '@mui/icons-material/LocalTaxi';
 import {Link} from 'react-router-dom'
 import "../assets/css/HeaderStyles.css";
 import MenuIcon from '@mui/icons-material/Menu';
+import logo from '../assets/images/logo.png';
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -16,16 +17,15 @@ const Header = () => {
   //menu drawer
   const drawer =(
     <Box onClick={handleDrawerToggle} sx={{textAlign:'center'}}>
-      <Typography color={"goldenrod"} variant="h6" component="div" 
-      sx={{ flexGrow: 1, my:2 }}>
-          <LocalTaxiIcon />urVahan</Typography>
+          
+          <img className='logo' src={logo} />
           <Divider />
             <ul className="mobile-navigation">
               <li>
-                <Link to={'/rider'}>Rider</Link>
+                <Link to={'/'}>Home</Link>
               </li>
               <li>
-                <Link to={'/'}>Home</Link>
+                <Link to={'/rider'}>Rider</Link>
               </li>
               <li>
                 <Link to={'/SignUp'}>SignUp</Link>
@@ -51,12 +51,17 @@ const Header = () => {
             <MenuIcon />
 
           </IconButton>
-        <Typography color={"goldenrod"} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <LocalTaxiIcon />urVahan</Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <img className='logo' src={logo} />
+          <Box sx={{ display: { xs: "none", sm: "block" } }} className="menus">
             <ul className="navigation-menu">
               <li>
                 <Link to={'/'}>Home</Link>
+              </li>
+              <li>
+                <Link to={'/rider'}>Rider</Link>
+              </li>
+              <li>
+                <Link to={'/dashboard'}>Dashboard</Link>
               </li>
               <li>
                 <Link to={'/SignUp'}>SignUp</Link>

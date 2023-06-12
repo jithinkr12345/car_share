@@ -11,6 +11,9 @@ const Home = props => {
 				<h4 className="card-title">{props.title}</h4>
 				<p className="card-text text-secondaryyy">{props.text}</p>
 			</div>
+			<div className='button-div'>
+				<button>{props.title}</button>
+			</div>
 		</div>
 		);
 }
