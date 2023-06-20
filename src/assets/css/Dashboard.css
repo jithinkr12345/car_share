@@ -1,10 +1,10 @@
-.card-dash{
+.card-dash {
     margin: auto;
     width: 50%;
     margin-top: 40px;
 }
 
-.Card1{
+.Card1 {
     width: 300px;
     display: inline-block;
     height: 480px;
@@ -15,7 +15,8 @@
     margin: 20px;
 
 }
-.Card2{
+
+.Card2 {
     width: 300px;
     display: inline-block;
     height: 480px;
@@ -26,11 +27,13 @@
     margin: 20px;
 
 }
-.upper-container{
+
+.upper-container {
     height: 100px;
     background: linear-gradient(to left, #2d00f7, #ff0291);
 }
-.image-container img{
+
+.image-container img {
     background: white;
     width: 100px;
     height: 100px;
@@ -38,16 +41,19 @@
     padding: 5px;
     transform: translate(2px, 45px);
 }
-img{
+
+img {
     border: 2px solid #8e00b9;
 }
-.lower-container{
+
+.lower-container {
     height: 100px;
     background: white;
     text-align: center;
     margin-top: 60px;
 }
-button{
+
+button {
     margin: 1rem;
     color: #2f2d2e;
     font: bold;
@@ -56,16 +62,17 @@ button{
     padding: 0.6rem;
     margin-top: 1;
     border-radius: 6px;
-    transition-duration:0.5s;
+    transition-duration: 0.5s;
     animation: ease-in-out;
 }
-button:hover{
-    background-image: linear-gradient(to left, #2d00f7, #ff0291);
+
+button:hover {
+    background-image: linear-gradient(to left, #f78900, #ebff02);
     transform: scale(1.2);
     border: none;
     color: white;
 }
 
-.para-dash{
+.para-dash {
     margin-top: 60px;
 }
