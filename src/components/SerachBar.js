@@ -91,7 +91,7 @@ const SearchBar = ({ onSearch }) => {
     </div>
                 
                 <div className='col-md-1 search-btn'>
-                    <button type="submit">Search</button>
+                    <button variant="primary" type="submit">Search</button>
                 </div>
             </div>
         </form>
