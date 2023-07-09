@@ -38,38 +38,55 @@ const SearchBar = ({ onSearch }) => {
                 {/* <div className='col-md-2'>
                     <input type="text" className="form-control" placeholder="Pickup location" value={pickup} onChange={handlePickupChange} />
                 </div> */}
-                <div className="col-md-6">
-          <PlaceAutocomplete onPlaceSelect={handlePickupChange} className="form-control" placeholder="Pickup location" value={pickup} />
-        </div>
-        <div className="col-md-6">
-          <PlaceAutocomplete onPlaceSelect={handleDestinationChange} className="form-control" placeholder="Select Destination" value={destination} />
-        </div>
-                <div className='col-md-2'>
+                <div className="col-md-2">
+                    <PlaceAutocomplete onPlaceSelect={handlePickupChange} className="form-control" placeholder="Pickup location" value={pickup} />
+                </div>
+                <div className="col-md-2">
+                    <PlaceAutocomplete onPlaceSelect={handleDestinationChange} className="form-control" placeholder="Select Destination" value={destination} />
+                </div>
+                <div className='col-md-2 date'>
                     <DatePicker selected={selectedTime} onChange={(time) => setSelectedTime(time)} />
                 </div>
 
 
-         <div className='col-md-2'>
-                <DatePicker
-              selected={selectedTime}
-              onChange={(time) => setSelectedTime(time)}
-              showTimeSelect
-              showTimeSelectOnly
-              timeIntervals={15}
-              timeCaption="Time"
-              dateFormat="h:mm aa"
-              className="form-control"
-              placeholderText="Select time"
-            />
-            <div className="input-group-append">
-              <span className="input-group-text">
-                <i className="bi bi-clock"></i>
-              </span>
-            </div>
-            </div>
+                <div className='col-md-2'>
+                    <DatePicker
+                selected={selectedTime}
+                onChange={(time) => setSelectedTime(time)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={15}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
+                className="form-control"
+                placeholderText="Select time"
+                    />
+                    {/* <div className="input-group-append">
+                    <span className="input-group-text">
+                        <i className="bi bi-clock"></i>
+                    </span>
+                    </div> */}
+                </div>
+                <div className="col-md-2 category">
+                    <ButtonGroup>
+                        <DropdownButton
+                        title={selectedOption}
+                        variant="secondary"
+                        id="search-dropdown"
+                        onSelect={handleOptionSelect}
+                        >
+                        <Dropdown.Item eventKey="Select"> </Dropdown.Item>
+                        <Dropdown.Item eventKey="Car"> Car </Dropdown.Item>
+                        <Dropdown.Item eventKey="Bike"> Bike </Dropdown.Item>
+                        </DropdownButton>
+                    </ButtonGroup>
+                </div>
+                <div className='col-md-2 search-btn'>
+                    <button variant="primary" type="submit">Search</button>
+                </div>
         
             <div className="container">
-      <div className="row">
+      {/* <div className="row">
         <div className="col-md-8">
           <input type="text" className="form-control" placeholder="Search..." />
         </div>
@@ -87,12 +104,12 @@ const SearchBar = ({ onSearch }) => {
             </DropdownButton>
           </ButtonGroup>
         </div>
-      </div>
+      </div> */}
     </div>
                 
-                <div className='col-md-1 search-btn'>
+                {/* <div className='offset-md-10 col-md-2 search-btn'>
                     <button variant="primary" type="submit">Search</button>
-                </div>
+                </div> */}
             </div>
         </form>
     );
