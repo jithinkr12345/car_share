@@ -1,0 +1,73 @@
+
+.registration-form {
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(48, 4, 4);
+  }
+
+  .field-group {
+    display: flex;
+  }
+  
+  .registration-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: aliceblue;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+color: aliceblue;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input[type='text'],
+  input[type='password'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='date'] {
+    /* width: 100%; */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+  
+  button[type='submit'] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .signup-bg {
+    padding: 20px;
+    background-image: url("../images/reg_back.jpeg");
+  }
+
+  .start-field {
+    margin-left: 50px;
+  }
+
+  .last-field {
+    margin-left: 50px;
+  }
+  .tel-field {
+    width: 70%;
+    margin-left: 50px;
+
+  }

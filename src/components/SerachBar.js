@@ -6,7 +6,7 @@ import "../assets/css/rider.css";
 import PlaceAutocomplete from '../PlaceAutoComplete';
 
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = (props) => {
     const [pickup, setPickup] = useState('');
     const [destination, setDestination] = useState('');
 
@@ -23,8 +23,12 @@ const SearchBar = ({ onSearch }) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        onSearch({ pickup, destination });
+        // onSearch({ pickup, destination });
     };
+
+    const handleCarDetails = () => {
+        props.handleFunction(true);
+    }
 
     const [selectedOption, setSelectedOption] = useState('Select Vehicle');
 
