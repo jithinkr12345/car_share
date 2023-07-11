@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
-import { AppBar, Box, Divider, Drawer, IconButton, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Divider, Drawer, IconButton, Toolbar, Typography } from '@mui/material';
 import LocalTaxiIcon from '@mui/icons-material/LocalTaxi';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import "../assets/css/HeaderStyles.css";
 import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../assets/images/logo.png';
@@ -25,8 +25,11 @@ const Header = () => {
                 <Link to={'/'}>Home</Link>
               </li>
               <li>
-                <Link to={'/rider'}>Rider</Link>
+                <Link to={'/rider-route'}>Rider</Link>
               </li>
+              {/* <li>
+                <Link to={'/rider'}>Rider</Link>
+              </li> */}
               <li>
                 <Link to={'/register'}>SignUp</Link>
               </li>
@@ -39,7 +42,7 @@ const Header = () => {
   return (
     <>
     <Box>
-      <AppBar component={'nav'} sx={{ bgcolor: "black" }}>
+      <AppBar component={'nav'} sx={{ bgcolor: "Black" }}>
         <Toolbar>
           <IconButton color="inherit" aria-label="open drawer" edge="start" 
           sx={{
@@ -58,8 +61,17 @@ const Header = () => {
                 <Link to={'/'}>Home</Link>
               </li>
               <li>
-                <Link to={'/rider'}>Rider</Link>
+                <Link to={'/rider-route'}>Rider</Link>
               </li>
+              {/* <li>
+                <Link to={'/rider'}>Rider</Link>
+                
+              </li> */}
+
+              <li>
+                <Link to={'/driver'}>Driver</Link>
+              </li>
+
               <li>
                 <Link to={'/dashboard'}>Dashboard</Link>
               </li>

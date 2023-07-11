@@ -1,35 +1,39 @@
-.navigation-menu{
+.navigation-menu {
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.navigation-menu li{
-    margin: 0px 20px;
+
+.navigation-menu li {
+    margin: 0px 10px;
 }
+
 .navigation-menu li a {
     text-decoration: none;
     color: white;
 }
 
 /* mobile view */
-.mobile-navigation{
+.mobile-navigation {
     list-style: none;
 }
-.mobile-navigation li{
-    margin-top: 20px;
+
+.mobile-navigation li {
+    margin-top: 15%;
 }
-.mobile-navigation li a{
+
+.mobile-navigation li a {
     text-decoration: none;
     font-size: 1.4rem;
     color: black;
 }
 
-.logo{
+.logo {
     height: 90px;
     width: 105px;
 }
 
-.menus{
+.menus {
     margin-left: 900px;
 }
