@@ -25,8 +25,11 @@ const Header = () => {
                 <Link to={'/'}>Home</Link>
               </li>
               <li>
-                <Link to={'/rider'}>Rider</Link>
+                <Link to={'/rider-route'}>Rider</Link>
               </li>
+              {/* <li>
+                <Link to={'/rider'}>Rider</Link>
+              </li> */}
               <li>
                 <Link to={'/register'}>SignUp</Link>
               </li>
@@ -58,9 +61,12 @@ const Header = () => {
                 <Link to={'/'}>Home</Link>
               </li>
               <li>
+                <Link to={'/rider-route'}>Rider</Link>
+              </li>
+              {/* <li>
                 <Link to={'/rider'}>Rider</Link>
                 
-              </li>
+              </li> */}
 
               <li>
                 <Link to={'/driver'}>Driver</Link>

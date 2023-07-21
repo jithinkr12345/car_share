@@ -3,6 +3,24 @@
 }
 
 .MuiPaper-root {
-    width: 600px;
+    width: 500px;
     margin: auto;
+}
+
+.MuiCard-root {
+    width: 350px;
+}
+
+.css-iyxwn2 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.pay-btn {
+    float: right;
+    z-index: -1;
+}
+
+.modal-content {
+    margin-top: 130px !important;
 }

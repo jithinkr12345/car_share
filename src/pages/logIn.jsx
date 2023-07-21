@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "../assets/css/login.css";
 
-const SignInPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -14,41 +15,37 @@ const SignInPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Here you can implement your sign-in logic
-    // For example, send a request to your API to authenticate the user
-
-    // Reset the form
-    setEmail('');
-    setPassword('');
   };
 
   return (
-    <div>
-      <h2>Sign In</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
+    <div className="login-bg">
+      <div className="login-container">
+        <h1>Road Runners Welcome you again❤️</h1>
+
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
+            id="email"
             value={email}
             onChange={handleEmailChange}
             required
           />
-        </div>
-        <div>
-          <label>Password:</label>
+
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
+            id="password"
             value={password}
             onChange={handlePasswordChange}
             required
           />
-        </div>
-        <button type="submit">Sign In</button>
-      </form>
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default SignInPage;
+export default LoginPage;
