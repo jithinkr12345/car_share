@@ -4,18 +4,20 @@ import { Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css";
 import "../assets/css/rider.css";
 import PlaceAutocomplete from '../PlaceAutoComplete';
+// import { DirectionsService } from '@react-google-maps/api';
 
 
 const SearchBar = (props) => {
     const [pickup, setPickup] = useState('');
     const [destination, setDestination] = useState('');
+    const [totalDistance, setTotalDistance] = useState(null); // New state to hold the total distance
 
-    const handlePickupChange = (event) => {
-        setPickup(event.target.value);
+    const handlePickupChange = (event) => { console.log(event, 'eventttttt')
+        setPickup(event.name);
     };
 
     const handleDestinationChange = (event) => {
-        setDestination(event.target.value);
+        setDestination(event.name);
     };
 
     // const [startDate, setStartDate] = useState(new Date());
@@ -23,8 +25,10 @@ const SearchBar = (props) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        // onSearch({ pickup, destination });
-    };
+        calculateDistance(pickup, destination); // Call the distance calculation function
+        // onSearch({ pickup, destination }); // Optionally, you can call your existing onSearch function here
+      };
+      
 
     const handleCarDetails = () => {
         props.handleFunction(true);
@@ -34,6 +38,34 @@ const SearchBar = (props) => {
 
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
+  };
+
+  // Helper function to calculate the distance using Google Maps API
+const calculateDistance = (origin, destination) => {
+    // Create a new DirectionsService instance
+    const directionsService = new window.google.maps.DirectionsService();
+  
+    // Define the request object for the DirectionsService
+    const request = {
+      origin: origin,
+      destination: destination,
+      travelMode: window.google.maps.TravelMode.DRIVING, // You can also choose other travel modes like BICYCLING or WALKING
+    };
+    console.log(request, 'request')
+  
+    // Call the DirectionsService route method
+    directionsService.route(request, (result, status) => {
+      if (status === window.google.maps.DirectionsStatus.OK) {
+        // Extract the total distance in meters from the response
+        const distanceInMeters = result.routes[0].legs[0].distance.value;
+        const distanceInKm = distanceInMeters / 1000;
+        console.log(distanceInKm, 'distanceInKm')
+        setTotalDistance(distanceInKm);
+      } else {
+        console.error('Error calculating distance:', status);
+        setTotalDistance(null);
+      }
+    });
   };
 
     return (
@@ -88,6 +120,8 @@ const SearchBar = (props) => {
                 <div className='col-md-2 search-btn'>
                     <button variant="primary" type="submit">Search</button>
                 </div>
+                {totalDistance !== null && <p>Total distance: {totalDistance} km</p>}
+
         
             <div className="container">
       {/* <div className="row">
