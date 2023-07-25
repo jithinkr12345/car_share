@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
+import Cookies from 'universal-cookie';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,9 +15,35 @@ const LoginPage = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const cookies = new Cookies();
+    try{
+      const response =  await fetch("http://127.0.0.1:8000/api/users/login", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        // credentials: 'include',
+        body: JSON.stringify(
+            {
+            "username": e.target.email.value,
+            "password": e.target.password.value
+          }
+        )
+      });
+      const body = await response.text();
+      const result = JSON.parse(body);
+      if (response.ok == false){
+        throw Error(body);
+      }
+      cookies.set('jwt', result.jwt);
+      navigate("/dashboard");
+    }
+    catch (e){
+      alert(e);
+    }
+
   };
 
   return (
