@@ -68,7 +68,7 @@ button {
 
 button:hover {
     background-image: linear-gradient(to left, #f78900, #ebff02);
-    transform: scale(1.2);
+    transform: scale(1.0);
     border: none;
     color: white;
 }
