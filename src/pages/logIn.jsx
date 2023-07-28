@@ -1,74 +1,59 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // import "../assets/css/login.css";
+import Cookies from 'universal-cookie';
+import '../assets/css/login1.css';
+import logoimg from '../assets/images/logo1.png';
+import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput } from 'mdb-react-ui-kit';
 
-// const LoginPage = () => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
+const LoginPage = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [formError, setFormError] = useState('');
 
 //   const handleEmailChange = (e) => {
 //     setEmail(e.target.value);
 //   };
 
-//   const handlePasswordChange = (e) => {
-//     setPassword(e.target.value);
-//   };
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+  
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//   };
-
-//   return (
-//     <div className="login-bg">
-//       <div className="login-container">
-//         <h1> Login </h1>
-
-//         <form onSubmit={handleSubmit}>
-//           <label htmlFor="email">Email:</label>
-//           <input
-//             type="email"
-//             id="email"
-//             value={email}
-//             onChange={handleEmailChange}
-//             required
-//           />
-
-//           <label htmlFor="password">Password:</label>
-//           <input
-//             type="password"
-//             id="password"
-//             value={password}
-//             onChange={handlePasswordChange}
-//             required
-//           />
-
-//           <button type="submit">Login</button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LoginPage;
-import React, { useState } from 'react';
-import '../assets/css/login1.css';
-import logoimg from '../assets/images/logo1.png';
-import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput } from 'mdb-react-ui-kit';
-
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [formError, setFormError] = useState('');
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const cookies = new Cookies();
     if (!email || !password) {
       setFormError('Please fill in all fields.');
-    } else {
-      // Add your login logic here, e.g., submit the form to the server
-      // Reset formError state if login is successful
-      setFormError('');
+    } 
+    else{
+      try{
+        const response =  await fetch("http://127.0.0.1:8000/api/users/login", {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          // credentials: 'include',
+          body: JSON.stringify(
+              {
+              "username": e.target.email.value,
+              "password": e.target.password.value
+            }
+          )
+        });
+        const body = await response.text();
+        const result = JSON.parse(body);
+        if (response.ok == false){
+          throw Error(body);
+        }
+        cookies.set('jwt', result.jwt);
+        setFormError('');
+        navigate("/dashboard");
+      }
+      catch (e){
+        alert(e);
+      }
     }
+
   };
 
   return (
@@ -86,7 +71,7 @@ function Login() {
               <MDBInput
                 wrapperClass='mb-4'
                 label='Email address'
-                id='form1'
+                id='email'
                 type='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -95,7 +80,7 @@ function Login() {
               <MDBInput
                 wrapperClass='mb-4'
                 label='Password'
-                id='form2'
+                id='password'
                 type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -131,4 +116,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;
