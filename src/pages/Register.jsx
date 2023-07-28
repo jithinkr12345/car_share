@@ -26,12 +26,12 @@ const RegistrationForm = () => {
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
       // Form is valid, you can submit the data or perform other actions here
-      try{
-        const response = await fetch("http://127.0.0.1:8000/api/users/register", {
+      try {
+        const response = await fetch("http://134.122.39.175:8000/api/users/register", {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(
-              {
+            {
               "username": e.target.email.value,
               "password": e.target.password.value,
               "password2": e.target.confirmPassword.value,
@@ -44,12 +44,12 @@ const RegistrationForm = () => {
         });
         const body = await response.text();
         const result = JSON.parse(body);
-        if (response.ok == false){
+        if (response.ok == false) {
           throw Error(body);
         }
         navigate("/login");
       }
-      catch (e){
+      catch (e) {
         alert(e);
       }
     } else {

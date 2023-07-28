@@ -12,36 +12,36 @@ const Header = () => {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const cookies = new Cookies();
-  const [name, setName] = useState("");
+  const [name, setName] = useState("name");
 
-  useEffect(() => {
-    (
-      async () => {
-          const response = await fetch('http://127.0.0.1:8000/api/user', {
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': cookies.get('jwt')
-              },
-              credentials: 'include',
-          });
+//   useEffect(() => {
+//     (
+//       async () => {
+//           const response = await fetch('http://134.122.39.175:8000/api/user', {
+//               headers: {
+//                 'Accept': 'application/json',
+//                 'Content-Type': 'application/json',
+//                 'Authorization': cookies.get('jwt')
+//               },
+//               credentials: 'include',
+//           });
 
-          const body = await response.text();
-          const result = JSON.parse(body);
-          if(!response.ok){
-            navigate("/login");
-          }
-          var fname = '';
-          if ((response.ok) && (result.first_name != 'undefined')){
-            fname += result.first_name;
-          }
-          if ((response.ok) && (result.last_name != 'undefined')){
-            fname += result.last_name;
-          }
-          setName(fname);
-      }
-    )();
-});
+//           const body = await response.text();
+//           const result = JSON.parse(body);
+//           if(!response.ok){
+//             navigate("/login");
+//           }
+//           var fname = '';
+//           if ((response.ok) && (result.first_name != 'undefined')){
+//             fname += result.first_name;
+//           }
+//           if ((response.ok) && (result.last_name != 'undefined')){
+//             fname += result.last_name;
+//           }
+//           setName(fname);
+//       }
+//     )();
+// });
 
     
 

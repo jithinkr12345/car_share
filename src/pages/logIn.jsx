@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../assets/css/login.css";
 import Cookies from 'universal-cookie';
+import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput } from 'mdb-react-ui-kit';
+import "../assets/css/login.css";
+import logoimg from '../assets/images/logo1.png';
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [formError, setFormError] = useState('');
 
   //   const handleEmailChange = (e) => {
   //     setEmail(e.target.value);
@@ -19,9 +22,10 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(e);
     const cookies = new Cookies();
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/users/login", {
+      const response = await fetch("http://134.122.39.175:8000/api/users/login", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // credentials: 'include',
@@ -34,9 +38,11 @@ const LoginPage = () => {
       });
       const body = await response.text();
       const result = JSON.parse(body);
-      if (response.ok == false) {
-        throw Error(body);
-      }
+      console.log(body);
+      console.log(result);
+      // if (response.ok == false) {
+      //   throw Error(body);
+      // }
       cookies.set('jwt', result.jwt);
       navigate("/dashboard");
     }
@@ -61,7 +67,7 @@ const LoginPage = () => {
               <MDBInput
                 wrapperClass='mb-4'
                 label='Email address'
-                id='form1'
+                id='email'
                 type='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -70,7 +76,7 @@ const LoginPage = () => {
               <MDBInput
                 wrapperClass='mb-4'
                 label='Password'
-                id='form2'
+                id='password'
                 type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -106,4 +112,4 @@ const LoginPage = () => {
   );
 }
 
-export default Login;
+export default LoginPage;
