@@ -11,6 +11,7 @@ const SearchBar = (props) => {
     const [pickup, setPickup] = useState('');
     const [destination, setDestination] = useState('');
     const [totalDistance, setTotalDistance] = useState(null); // New state to hold the total distance
+    const [totalAmount, setTotalAmount] = useState(null);
 
     const handlePickupChange = (event) => { console.log(event, 'eventttttt')
         setPickup(event.name);
@@ -66,6 +67,30 @@ const calculateDistance = (origin, destination) => {
         setTotalDistance(null);
       }
     });
+
+    try{
+      const response =  fetch("http://127.0.0.1:8000/api/user/price", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        // credentials: 'include',
+        body: JSON.stringify(
+            {
+            "total_km": totalDistance
+          }
+        )
+      }).then(response => {
+        return response.json();
+      }).then(data => {
+        setTotalAmount(data.total_price);
+      });
+      // const body = response.text();
+      // const result = JSON.parse(body);
+      console.log(response);
+      // console.log(result);
+    }
+    catch (e){
+      alert(e);
+    }
   };
 
     return (
@@ -121,6 +146,7 @@ const calculateDistance = (origin, destination) => {
                     <button variant="primary" type="submit">Search</button>
                 </div>
                 {totalDistance !== null && <p>Total distance: {totalDistance} km</p>}
+                {totalAmount !== null && <p>Total amount: ${totalAmount}</p>}
 
         
             <div className="container">
