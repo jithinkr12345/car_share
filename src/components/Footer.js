@@ -5,7 +5,7 @@ import appstore_icon from "../assets/images/App_store.png"
 
 const Footer = () => {
     return (
-        <footer style={{ backgroundColor: "black", color: "blue", paddingTop: '20px' }}>
+        <footer style={{ backgroundColor: "black", color: "grey", paddingTop: '20px' }}>
             <div className="container">
                 <div className="row">
                     <div className="col-md-3">
