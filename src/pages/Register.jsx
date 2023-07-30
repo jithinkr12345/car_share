@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./register.css";
+import "../assets/css/register.css";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
-    birthdate: "",
+    user_type: "",
     password: "",
     confirmPassword: "",
     email: "",
     phone: "",
   });
-  // const [password, setPassword] = useState("");
-  // const [confirmpassword, setConfirmPassword] = useState("");
 
   const [errors, setErrors] = useState({});
 
@@ -22,14 +20,37 @@ const RegistrationForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
-    console.log(validationErrors, "validationErrors");
     if (Object.keys(validationErrors).length === 0) {
       // Form is valid, you can submit the data or perform other actions here
-      console.log("Form data:", formData);
-      navigate("/login");
+      try{
+        const response = await fetch("http://127.0.0.1:8000/api/users/register", {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(
+              {
+              "username": e.target.email.value,
+              "password": e.target.password.value,
+              "password2": e.target.confirmPassword.value,
+              "email": e.target.email.value,
+              "first_name": e.target.firstname.value,
+              "last_name": e.target.lastname.value,
+              "user_type": e.target.user_type.value
+            }
+          )
+        });
+        const body = await response.text();
+        const result = JSON.parse(body);
+        if (response.ok == false){
+          throw Error(body);
+        }
+        navigate("/login");
+      }
+      catch (e){
+        alert(e);
+      }
     } else {
       setErrors(validationErrors);
     }
@@ -39,7 +60,7 @@ const RegistrationForm = () => {
     const errors = {};
     // Add your validation logic here
     // Example: Validate that all fields are filled
-    console.log(formData, "formData");
+    // console.log(formData, "formData");
     if (formData.firstname === "") {
       errors.firstname = "First Name is required";
     }
@@ -66,11 +87,17 @@ const RegistrationForm = () => {
     return errors;
   };
 
+  const [selectedOption, setSelectedOption] = useState('');
+
+  const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+
   return (
     <div className="signup-bg">
       <div className="registration-form">
         <h1>Registration Form</h1>
-
         <form onSubmit={handleSubmit}>
           <div className="form-group field-group">
             <div className="start-field">
@@ -156,18 +183,15 @@ const RegistrationForm = () => {
           </div>
           <div className="form-group field-group">
             <div className="tel-field">
-              <label htmlFor="birthdate">Birthdate:</label>
-              <input
-                type="date"
-                id="birthdate"
-                name="birthdate"
-                value={formData.birthdate}
-                onChange={handleChange}
-              />
-              {errors.birthdate && (
-                <div className="error">{errors.birthdate}</div>
-              )}
+              <label htmlFor="user_type">User Type:</label>
+              <select id="user_type" value={selectedOption} onChange={handleSelectChange} className="user_select">
+                <option value="">Select an option</option>
+                <option value="rider">Rider</option>
+                <option value="driver">Driver</option>
+                <option value="admin">Admin</option>
+              </select>
             </div>
+
           </div>
 
           <button type="submit">Register</button>
