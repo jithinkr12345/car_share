@@ -92,18 +92,11 @@ const calculateDistance = (origin, destination) => {
         axios.get("http://127.0.0.1:8000/api/rider/base_price")
           .then(response => {
             console.log(response.data, 'priceAPI')
+            let calculateRegularCost, calculateComfortCost, calculateXlCost = 0;
             
         response.data.map(costData => {
-          let calculateRegularCost, calculateComfortCost, calculateXlCost = 0;
-          if(costData.category === "regular") {
-            calculateRegularCost = distanceInKm * Number(costData.base_price);
-          } else if(costData.category === "comfort") {
-            calculateComfortCost = distanceInKm * Number(costData.base_price);
-          } else {
-            calculateXlCost = distanceInKm * Number(costData.base_price);
-          }
-        })
-          })
+          console.log(response.data, 'COSTAPI')
+          
 
 
         // Extract the total distance in meters from the response
@@ -111,10 +104,19 @@ const calculateDistance = (origin, destination) => {
         const distanceInKm = distanceInMeters / 1000;
         console.log(distanceInKm, 'distanceInKm')
         // calculating price
+          if(costData.category === "regular") {
+            calculateRegularCost = distanceInKm * Number(costData.base_price);
+          } else if(costData.category === "comfort") {
+            calculateComfortCost = distanceInKm * Number(costData.base_price);
+          } else {
+            calculateXlCost = distanceInKm * Number(costData.base_price);
+          }
         
-        setTotalDistance(distanceInKm);
-        console.log(calculateRegularCost, calculateComfortCost, calculateXlCost, 'calculateRegularCost, calculateComfortCost, calculateXlCost')
-        props.handleFunction({calculateRegularCost, calculateComfortCost, calculateXlCost});
+          setTotalDistance(distanceInKm);
+          console.log(calculateRegularCost, calculateComfortCost, calculateXlCost, 'calculateRegularCost, calculateComfortCost, calculateXlCost')
+          props.handleFunction({calculateRegularCost, calculateComfortCost, calculateXlCost});
+        })
+          })
       } else {
         console.error('Error calculating distance:', status);
         setTotalDistance(null);
