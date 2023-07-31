@@ -6,16 +6,23 @@ import ChooseRide from "./ChooseRide";
 
 function RideChoice() {
   const [showChooseRide, setShowChooseRide] = useState(true);
-  if(showChooseRide){
+  const [regularCost, setRegularCost] = useState(0);
+  const [comfortCost, setComfortCost] = useState(0);
+  const [xlCost, setXlCost] = useState(0);
+  if (showChooseRide) {
     var grid1 = "col-md-4";
     var grid2 = "col-md-8";
   }
-  else{
+  else {
     var grid1 = "col-md-0";
     var grid2 = "col-md-12";
   }
-  const handleShowChooseRide = (flag) => {
-    setShowChooseRide(flag);
+  const handleShowChooseRide = (obj) => {
+    // setShowChooseRide(obj);
+    console.log(obj, 'obj')
+    setRegularCost(obj.calculateRegularCost);
+    setComfortCost(obj.calculateComfortCost);
+    setXlCost(obj.calculateXlCost);
   }
   return (
     <>
@@ -23,13 +30,13 @@ function RideChoice() {
         <SearchBar handleFunction={handleShowChooseRide} />
         <div className="row">
           <div className={grid1}>
-            {showChooseRide ? <ChooseRide /> : null}
+            {showChooseRide ? <ChooseRide costData={{ regularCost, comfortCost, xlCost }} /> : null}
           </div>
           <div className={grid2}>
             <Map />
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </>
   );
