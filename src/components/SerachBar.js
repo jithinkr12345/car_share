@@ -92,13 +92,9 @@ const calculateDistance = (origin, destination) => {
         axios.get("http://127.0.0.1:8000/api/rider/base_price")
           .then(response => {
             console.log(response.data, 'priceAPI')
-            // Extract the total distance in meters from the response
-        const distanceInMeters = result.routes[0].legs[0].distance.value;
-        const distanceInKm = distanceInMeters / 1000;
-        console.log(distanceInKm, 'distanceInKm')
-        // calculating price
-        let calculateRegularCost, calculateComfortCost, calculateXlCost = 0;
+            
         response.data.map(costData => {
+          let calculateRegularCost, calculateComfortCost, calculateXlCost = 0;
           if(costData.category === "regular") {
             calculateRegularCost = distanceInKm * Number(costData.base_price);
           } else if(costData.category === "comfort") {
@@ -107,10 +103,18 @@ const calculateDistance = (origin, destination) => {
             calculateXlCost = distanceInKm * Number(costData.base_price);
           }
         })
-        setTotalDistance(distanceInKm);
-        console.log(calculateRegularCost, calculateComfortCost, calculateXlCost, 'calculateRegularCost')
-        props.handleFunction({calculateRegularCost, calculateComfortCost, calculateXlCost});
           })
+
+
+        // Extract the total distance in meters from the response
+        const distanceInMeters = result.routes[0].legs[0].distance.value;
+        const distanceInKm = distanceInMeters / 1000;
+        console.log(distanceInKm, 'distanceInKm')
+        // calculating price
+        
+        setTotalDistance(distanceInKm);
+        console.log(calculateRegularCost, calculateComfortCost, calculateXlCost, 'calculateRegularCost, calculateComfortCost, calculateXlCost')
+        props.handleFunction({calculateRegularCost, calculateComfortCost, calculateXlCost});
       } else {
         console.error('Error calculating distance:', status);
         setTotalDistance(null);
