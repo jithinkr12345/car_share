@@ -4,7 +4,7 @@ import LocalTaxiIcon from '@mui/icons-material/LocalTaxi';
 import {Link} from 'react-router-dom';
 import "../assets/css/HeaderStyles.css";
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../assets/images/logo.png';
+import logo from '../assets/images/logo 1.jpg';
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 

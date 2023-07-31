@@ -16,7 +16,14 @@ const Block = () => {
                     <p style={{ fontFamily: 'sans-serif', fontSize: '18px', fontWeight: 'inherit' }}>
                     A ride is more than just a ride. It's a gateway to opportunities and jobs.
                     A connection to community. And access to essentials like groceries, healthcare, and polling places.
-                    Our initiative makes rides more accessible for millions, and helps bring communities even closer.</p>
+                    Our initiative makes rides more accessible for millions, and helps bring communities even closer.
+                    <br></br>
+                    <br></br>
+                    A ride is more than just a ride. It's a gateway to opportunities and jobs.
+                    A connection to community. And access to essentials like groceries, healthcare, and polling places.
+                    Our initiative makes rides more accessible for millions, and helps bring communities even closer.
+                    
+                    </p>
                 </div>
             </div>
         </div>

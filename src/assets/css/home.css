@@ -2,7 +2,7 @@ body{
     background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
 }
 .card{
-    width: 20rem;
+    width: 40rem;
     height: 30rem;
 }
 .card:hover{
@@ -58,4 +58,10 @@ body{
 
 .block-para p {
     padding: 15px;
+}
+
+.css-1uov8u-MuiPaper-root-MuiAppBar-root{
+
+background-color: purple;
+
 }
