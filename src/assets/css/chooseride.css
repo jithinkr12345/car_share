@@ -7,16 +7,16 @@
     margin: auto;
 }
 
-.MuiCard-root{
+.MuiCard-root {
     width: 350px;
 }
 
-.css-iyxwn2{
+.css-iyxwn2 {
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
 
-.pay-btn{
+.pay-btn {
     float: right;
     z-index: -1;
 }

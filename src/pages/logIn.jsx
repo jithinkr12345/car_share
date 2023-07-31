@@ -12,29 +12,29 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [formError, setFormError] = useState('');
 
-//   const handleEmailChange = (e) => {
-//     setEmail(e.target.value);
-//   };
+  //   const handleEmailChange = (e) => {
+  //     setEmail(e.target.value);
+  //   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const cookies = new Cookies();
     if (!email || !password) {
       setFormError('Please fill in all fields.');
-    } 
-    else{
-      try{
-        const response =  await fetch("http://127.0.0.1:8000/api/users/login", {
+    }
+    else {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/users/login", {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           // credentials: 'include',
           body: JSON.stringify(
-              {
+            {
               "username": e.target.email.value,
               "password": e.target.password.value
             }
@@ -42,14 +42,14 @@ const LoginPage = () => {
         });
         const body = await response.text();
         const result = JSON.parse(body);
-        if (response.ok == false){
+        if (response.ok == false) {
           throw Error(body);
         }
         cookies.set('jwt', result.jwt);
         setFormError('');
         navigate("/dashboard");
       }
-      catch (e){
+      catch (e) {
         alert(e);
       }
     }

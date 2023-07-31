@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
+import axios from 'axios';
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
@@ -20,36 +21,36 @@ const bull = (
   </Box>
 );
 
-const cardOne = (
-    <>
-      <Box sx={{ display: "flex" }}>
-        <CardMedia
-          component="img"
-          margin="5px"
-          height="70"
-          image={CarImage}
-          alt="Car Image"
-        />
-        <Box sx={{ display: "grid", margin: "0px 20px" }}>
-          <Typography component="div" variant="h5">
-            Regular
-          </Typography>
-          <Typography component="div" variant="h7">
-            Arrives in 4min
-          </Typography>
-        </Box>
-        <Typography
-          sx={{ fontWeight: "bold", margin: "0px auto" }}
-          component="div"
-          variant="h5"
-        >
-          $18.75
+const cardOne = (regularCost) => (
+  <>
+    <Box sx={{ display: "flex" }}>
+      <CardMedia
+        component="img"
+        margin="5px"
+        height="70"
+        image={CarImage}
+        alt="Car Image"
+      />
+      <Box sx={{ display: "grid", margin: "0px 20px" }}>
+        <Typography component="div" variant="h5">
+          Regular
+        </Typography>
+        <Typography component="div" variant="h7">
+          Arrives in 4min
         </Typography>
       </Box>
-    </>
+      <Typography
+        sx={{ fontWeight: "bold", margin: "0px auto" }}
+        component="div"
+        variant="h5"
+      >
+        ${regularCost}
+      </Typography>
+    </Box>
+  </>
 );
 
-const cardTwo = (
+const cardTwo = (comfortCost) => (
   <React.Fragment>
     <CardContent>
       <Box sx={{ display: "flex" }}>
@@ -73,7 +74,7 @@ const cardTwo = (
           component="div"
           variant="h5"
         >
-          $20.00
+          ${comfortCost}
         </Typography>
       </Box>
       <Box>
@@ -83,7 +84,7 @@ const cardTwo = (
   </React.Fragment>
 );
 
-const cardThree = (
+const cardThree = (xlCost) => (
   <React.Fragment>
     <CardContent>
       <Box sx={{ display: "flex" }}>
@@ -107,7 +108,7 @@ const cardThree = (
           component="div"
           variant="h5"
         >
-          $25.50
+          ${xlCost}
         </Typography>
       </Box>
       <Box>
@@ -117,26 +118,35 @@ const cardThree = (
   </React.Fragment>
 );
 
-export default function OutlinedCard() {
+export default function OutlinedCard(props) {
   const [openModal, setOpenModal] = useState(false);
+  const [regularCost, setRegularCost] = useState(0);
+  const [comfortCost, setComfortCost] = useState(0);
+  const [xlCost, setXlCost] = useState(0);
+  console.log(props, 'props')
+  useEffect(() => {
+    setRegularCost(props.costData.regularCost);
+    setComfortCost(props.costData.comfortCost);
+    setXlCost(props.costData.xlCost);
+  })
   return (
     <Box sx={{ minWidth: 275, padding: 10 }}>
       <Card sx={{ margin: "10px auto" }} variant="outlined">
         <React.Fragment>
           <CardContent>
-            {cardOne}
+            {cardOne(regularCost.toFixed(2))}
             <Box>
-              
-              <PaymentModal/>
+
+              <PaymentModal />
             </Box>
           </CardContent>
         </React.Fragment>
       </Card>
       <Card sx={{ margin: "10px auto" }} variant="outlined">
-        {cardTwo}
+        {cardTwo(comfortCost.toFixed(2))}
       </Card>
       <Card sx={{ margin: "10px auto" }} variant="outlined">
-        {cardThree}
+        {cardThree(xlCost.toFixed(2))}
       </Card>
     </Box>
   );
