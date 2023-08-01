@@ -2,7 +2,7 @@
     border: 2px solid grey;
     padding: 10px;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 15px !important;
 }
 
 .map {
@@ -11,19 +11,42 @@
 
 .search-btn button{
     margin: 0px;
-    height: 40px;
+    height: 45px;
     padding: 5px;
     width: 110px;
 }
 
+.pickup input{
+  width: 300px;
+}
+
+.drop input{
+  width: 300px;
+}
+
 .date input{
     border-radius: var(--bs-border-radius);
-    height: 37px;
+    height: 45px;
     border: var(--bs-border-width) solid var(--bs-border-color);
+    width: 105px;
+}
+
+.time input{
+  width: 100px;
+  padding: 12px;
+}
+
+.time{
+  margin: 12px;
 }
 
 .category button{
     margin: 0px;
+    height: 45px;
+}
+
+.category{
+  width: 155px !important;
 }
 
 .main-container {
