@@ -26,7 +26,7 @@ const RegistrationForm = () => {
     if (Object.keys(validationErrors).length === 0) {
       // Form is valid, you can submit the data or perform other actions here
       try {
-        const response = await fetch("http://134.122.39.175:8000/api/users/register", {
+        const response = await fetch("http://127.0.0.1:8000/api/users/register", {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(

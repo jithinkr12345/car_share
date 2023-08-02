@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import SearchBar from '../components/SerachBar';
+import SearchBar from '../components/SearchBar';
 import Footer from '../components/Footer';
 import Map from '../components/map';
 import Modal from "../components/Modal";

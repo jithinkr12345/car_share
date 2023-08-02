@@ -21,7 +21,7 @@ const bull = (
   </Box>
 );
 
-const cardOne = (regularCost) => (
+const cardOne = (regularCost, duration) => (
   <>
     <Box sx={{ display: "flex" }}>
       <CardMedia
@@ -35,9 +35,9 @@ const cardOne = (regularCost) => (
         <Typography component="div" variant="h5">
           Regular
         </Typography>
-        <Typography component="div" variant="h7">
-          Arrives in 4min
-        </Typography>
+        {/* <Typography component="div" variant="h7">
+          Average Duration
+        </Typography> */}
       </Box>
       <Typography
         sx={{ fontWeight: "bold", margin: "0px auto" }}
@@ -65,9 +65,9 @@ const cardTwo = (comfortCost) => (
           <Typography component="div" variant="h5">
             Comfort
           </Typography>
-          <Typography component="div" variant="h7">
+          {/* <Typography component="div" variant="h7">
             Arrives in 7min
-          </Typography>
+          </Typography> */}
         </Box>
         <Typography
           sx={{ fontWeight: "bold", margin: "0px auto" }}
@@ -78,7 +78,7 @@ const cardTwo = (comfortCost) => (
         </Typography>
       </Box>
       <Box>
-        <button className="pay-btn">Pay</button>
+        <button className="pay-btn">Confirm Ride</button>
       </Box>
     </CardContent>
   </React.Fragment>
@@ -99,9 +99,9 @@ const cardThree = (xlCost) => (
           <Typography component="div" variant="h5">
             XL
           </Typography>
-          <Typography component="div" variant="h7">
+          {/* <Typography component="div" variant="h7">
             Arrives in 1min
-          </Typography>
+          </Typography> */}
         </Box>
         <Typography
           sx={{ fontWeight: "bold", margin: "0px auto" }}
@@ -112,32 +112,49 @@ const cardThree = (xlCost) => (
         </Typography>
       </Box>
       <Box>
-        <button className="pay-btn">Pay</button>
+        <button className="pay-btn">Confirm Ride</button>
       </Box>
     </CardContent>
   </React.Fragment>
 );
 
 export default function OutlinedCard(props) {
+  console.log('choose', props);
   const [openModal, setOpenModal] = useState(false);
   const [regularCost, setRegularCost] = useState(0);
   const [comfortCost, setComfortCost] = useState(0);
   const [xlCost, setXlCost] = useState(0);
-  console.log(props, 'props')
+  const [pickup, setPickup] = useState('');
+  const [dropoff, setDropoff] = useState('');
+  const [rideid, setRideid] = useState(0);
+  const [duration, setDuration] = useState('');
   useEffect(() => {
     setRegularCost(props.costData.regularCost);
     setComfortCost(props.costData.comfortCost);
     setXlCost(props.costData.xlCost);
+    setPickup(props.costData.pickup);
+    setDropoff(props.costData.dropoff);
+    setDuration(props.costData.duration);
   })
+
+  const handleRide = (obj) => {
+    console.log("objjjjjjj", obj);
+    setRideid(obj.rideid);
+    var ride_id = obj.rideid;
+    props.handleFunction({ride_id});
+  }
+
+  console.log('dddddeeeeeee', duration);
+
   return (
     <Box sx={{ minWidth: 275, padding: 10 }}>
       <Card sx={{ margin: "10px auto" }} variant="outlined">
         <React.Fragment>
           <CardContent>
-            {cardOne(regularCost.toFixed(2))}
+            {cardOne(regularCost.toFixed(2), duration)}
             <Box>
 
-              <PaymentModal />
+              <PaymentModal amount={{regularCost, comfortCost, xlCost, pickup, dropoff}} handleFunction={handleRide} />
             </Box>
           </CardContent>
         </React.Fragment>
