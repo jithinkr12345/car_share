@@ -119,7 +119,6 @@ const cardThree = (xlCost) => (
 );
 
 export default function OutlinedCard(props) {
-  console.log('choose', props);
   const [openModal, setOpenModal] = useState(false);
   const [regularCost, setRegularCost] = useState(0);
   const [comfortCost, setComfortCost] = useState(0);
@@ -129,6 +128,7 @@ export default function OutlinedCard(props) {
   const [rideid, setRideid] = useState(0);
   const [duration, setDuration] = useState('');
   useEffect(() => {
+    console.log("props", props);
     setRegularCost(props.costData.regularCost);
     setComfortCost(props.costData.comfortCost);
     setXlCost(props.costData.xlCost);
@@ -138,13 +138,10 @@ export default function OutlinedCard(props) {
   })
 
   const handleRide = (obj) => {
-    console.log("objjjjjjj", obj);
     setRideid(obj.rideid);
     var ride_id = obj.rideid;
     props.handleFunction({ride_id});
   }
-
-  console.log('dddddeeeeeee', duration);
 
   return (
     <Box sx={{ minWidth: 275, padding: 10 }}>
