@@ -60,93 +60,232 @@
 
 
 
-import React from 'react';
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBIcon,
-  MDBBtn
-} from 'mdb-react-ui-kit';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Icon1 from '../assets/images/FdIcon.png';
+import Icon2 from '../assets/images/FdIcon1.png';
+import Icon3 from '../assets/images/FdIcon2.png';
 
-function Footer() {
+
+import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
+
+const Container = styled.section`
+  padding: 20px;
+  background: #f0f0f0;
+`;
+
+const Slide = styled.div`
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+  margin-bottom: 10px;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+`;
+
+export const QuoteCarousel = () => {
+  const quotes = [
+    {
+      text: '“As a student, it’s hard to complete my class work around a schedule...',
+      author: 'Harold',
+      year: 'Driving with RoadRunner since 2020',
+      imageUrl:Icon1,
+    },
+    {
+      text: '“Driving with RoadRunner is the perfect way to make money and be there...',
+      author: 'Timothy',
+      year: 'Driving with RoadRunner since 2017',
+      imageUrl: Icon2,
+    },
+    {
+      text: '“I\'m a disabled Marine Corps veteran, and because of my disability...',
+      author: 'Christine',
+      year: 'Driving with RoadRunner since 2016',
+      imageUrl: Icon3,
+    },
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % quotes.length);
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0 ? quotes.length - 1 : prevSlide - 1
+    );
+  };
+
   return (
-    <MDBFooter className='bg-light text-center text-white'>
-      <MDBContainer className='p-4 pb-0'>
-        <section className='mb-4'>
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#3b5998' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='facebook-f' />
-          </MDBBtn>
+    <Container
+      data-tracking-action="view"
+      data-tracking-category="QuoteCarousel"
+      data-tracking-label="Driver > Pink Paint > Driver Quotes"
+      data-testid="section-undefined"
+    >
+      <div role="region" aria-roledescription="carousel" aria-label="Slides">
+        <Slide>
+          <Image src={quotes[currentSlide].imageUrl} alt={quotes[currentSlide].author} />
+          <p>{quotes[currentSlide].text}</p>
+          <p>— {quotes[currentSlide].author}</p>
+          <p>{quotes[currentSlide].year}</p>
+          <ButtonContainer>
+            <button onClick={handlePrevSlide}>Previous</button>
+            <button onClick={handleNextSlide}>Next</button>
+          </ButtonContainer>
+        </Slide>
+      </div>
+    </Container>
+  );
+};
 
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#55acee' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='twitter' />
-          </MDBBtn>
 
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#dd4b39' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='google' />
-          </MDBBtn>
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#ac2bac' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='instagram' />
-          </MDBBtn>
 
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#0082ca' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='linkedin-in' />
-          </MDBBtn>
+export const Footer = () =>{
+  return (
+    <MDBFooter bgColor='light' className='text-center text-lg-start text-muted'>
+    <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
+      <div className='me-5 d-none d-lg-block'>
+        <span> Get's Book a Safe Ride!!!</span>
+      </div>
 
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#333333' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='github' />
-          </MDBBtn>
-        </section>
-      </MDBContainer>
-
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-        © 2020 Copyright:
-        <a className='text-white' href='https://mdbootstrap.com/'>
-          MDBootstrap.com
+      <div>
+        <a href='' className='me-4 text-reset'>
+          <MDBIcon fab icon="facebook-f"
+          style={{ backgroundColor: '#3b5998' }} 
+          />
+        </a>
+        <a href='' className='me-4 text-reset'>
+          <MDBIcon fab icon="twitter"
+          style={{ backgroundColor: '#55acee' }} 
+          />
+        </a>
+        <a href='' className='me-4 text-reset'>
+          <MDBIcon fab icon="google"
+          style={{ backgroundColor: '#dd4b39' }}
+           />
+        </a>
+        <a href='' className='me-4 text-reset'>
+          <MDBIcon fab icon="instagram"
+          style={{ backgroundColor: '#ac2bac' }}
+           />
+        </a>
+        <a href='' className='me-4 text-reset'>
+          <MDBIcon fab icon="linkedin"
+          style={{ backgroundColor: '#0082ca' }}
+           />
+        </a>
+        <a href='' className='me-4 text-reset'>
+          <MDBIcon fab icon="github"
+           style={{ backgroundColor: '#333333' }}
+            />
         </a>
       </div>
-    </MDBFooter>
+    </section>
+
+    <section className=''>
+      <MDBContainer className='text-center text-md-start mt-5'>
+        <MDBRow className='mt-3'>
+          <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
+            <h6 className='text-uppercase fw-bold mb-4'>
+              <MDBIcon icon="gem" className="me-3" />
+              Company name
+            </h6>
+            <p>
+              Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+              consectetur adipisicing elit.
+            </p>
+          </MDBCol>
+
+          <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
+            <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
+            <p>
+              <a href='' className='text-reset'>
+                Book a Ride
+              </a>
+            </p>
+            <p>
+              <a href='#!' className='text-reset'>
+                Book as Driver
+              </a>
+            </p>
+            <p>
+              <a href='#!' className='text-reset'>
+                Promotions
+              </a>
+            </p>
+            <p>
+              <a href='#!' className='text-reset'>
+                
+              </a>
+            </p>
+          </MDBCol>
+
+          <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
+            <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
+            <p>
+              <a href='#!' className='text-reset'>
+                Pricing
+              </a>
+            </p>
+            <p>
+              <a href='#!' className='text-reset'>
+                Settings
+              </a>
+            </p>
+            <p>
+              <a href='#!' className='text-reset'>
+                Book History
+              </a>
+            </p>
+            <p>
+              <a href='#!' className='text-reset'>
+                Help
+              </a>
+            </p>
+          </MDBCol>
+
+          <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
+            <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
+            <p>
+              <MDBIcon icon="home" className="me-2" />
+              New York, NY 10012, US
+            </p>
+            <p>
+              <MDBIcon icon="envelope" className="me-3" />
+              info@example.com
+            </p>
+            <p>
+              <MDBIcon icon="phone" className="me-3" /> + 01 234 567 88
+            </p>
+            <p>
+              <MDBIcon icon="print" className="me-3" /> + 01 234 567 89
+            </p>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    </section>
+
+    <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+      © 2021 Copyright:
+      <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
+        MDBootstrap.com
+      </a>
+    </div>
+  </MDBFooter>
   );
 }
-
-
-export default Footer;
 
 

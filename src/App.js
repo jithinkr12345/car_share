@@ -4,15 +4,15 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Rider from "./pages/Rider";
 import Dashboard from "./pages/Dashboard";
-import Driver from './pages/Driver';
+// import Driver from './pages/Driver';
 import Login from "./pages/logIn";
 import Logout from "./pages/logOut";
 import Register from "./pages/Register";
 import RiderRoute from "./pages/RiderChoice";
 import {Route, Routes} from "react-router-dom";
 import Driverdetails from './components/Driverdetails';
+import {HeaderBlock, Main} from './components/HeaderBlock';
 import './assets/css/Dashboard.css';
-
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
 				<Route path='/' element={<Home/>} />
 				<Route path='/rider-route' element={<RiderRoute/>} />
 				<Route path='/rider' element={<Rider/>} />
-				<Route path='/driver' element ={<Driver/>}/>
+				<Route path='/HeaderBlock' element ={<HeaderBlock/>}/>
 				<Route path='/login' element={<Login/>} />
 				<Route path='/logout' element={<Logout/>} />
 				<Route path='/register' element={<Register/>} />
