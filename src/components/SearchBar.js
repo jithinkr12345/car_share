@@ -10,7 +10,10 @@ import {GoogleMap, MarkerF, Autocomplete} from "@react-google-maps/api";
 import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
 import "../assets/css/rider.css";
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
 import "react-datepicker/dist/react-datepicker.css";
+import DropdownButton from 'react-bootstrap/DropdownButton';
 //import PlaceAutocomplete from '../PlaceAutoComplete';
 // import { DirectionsService } from '@react-google-maps/api';
 // Import date-fns functions for date validation
@@ -236,73 +239,8 @@ const SearchBar = (props) => {
     {selectedTime === null && <p className="error-message">Please select a valid date and time.</p>}
     {isPast(selectedTime) && <p className="error-message">Selected date and time cannot be in the past.</p>}
 </div>
-</form>
 
 
-<<<<<<< HEAD
-       
-        //     <div className='row form-search'>
-        //         <div className="col-md-3 pickup">
-        //             <Autocomplete>
-        //              <input type='text' placeholder='Your Location' ref={orginRef}/>
-        //             </Autocomplete>
-        //         </div>
-        //         <div className="col-md-3 drop">
-        //             <Autocomplete>
-        //               <input type='text' placeholder='Where to?' ref={destinationRef}/>
-        //             </Autocomplete>
-        //         </div>
-        //         <div className='col-md-1 date'>
-        //             <DatePicker selected={selectedTime} onChange={(time) => setSelectedTime(time)} placeholderText="Select Date"/>
-        //         </div>
-
-
-        //       {/* <DatePicker
-        //         selected={selectedTime}
-        //         onChange={(time) => setSelectedTime(time)}
-        //         showTimeSelect
-        //         showTimeSelectOnly
-        //         timeIntervals={15}
-        //         timeCaption="Time"
-        //         dateFormat="h:mm aa"
-        //         className="form-control"
-        //         placeholderText="Now"
-        //         /> */} 
-
-        //         <div className='col-md-3 time'>
-          
-        //         <LocalizationProvider dateAdapter={AdapterDayjs}>
-        //           <DemoContainer components={['TimePicker']}>
-        //             <TimePicker />
-        //           </DemoContainer>
-        //         </LocalizationProvider>
-                   
-        //         </div>
-
-                
-        //   <div className="col-md-0.5 category">
-        //   <select
-        //   value={selectedOption}
-        //   className="form-control"
-        //    onChange={handleOptionSelect} >
-        //  <option value=""> Select Vehicle </option>
-        //  <option value="Car"> Car </option>
-        //  <option value="Bike"> Bike </option>
-        //  </select>
-
-        //  </div>
-
-        //         <div className='col-md-2 search-btn'>
-        //         <button variant="primary" type="submit">Search</button>
-        //         </div>
-        //         {distance !== 0 && <p>Total distance: {distance} km</p>}
-        //         {totalAmount !== null && <p>Total amount: ${totalAmount}</p>}
-        //         {duration !== null && <p>Average duration: ${duration}</p>}
-        //         {selectedTime === null && <p className="error-message">Please select a valid date and time.</p>}
-        //        {isPast(selectedTime) && <p className="error-message">Selected date and time cannot be in the past.</p>}
-        //     </div>
-        
-=======
                 <div className='col-md-1 time'>
                     <DatePicker
                 selected={selectedTime}
@@ -338,9 +276,8 @@ const SearchBar = (props) => {
                 {duration !== '' && <p>Average duration: ${duration}</p>}
                 {selectedTime === null && <p className="error-message">Please select a valid date and time.</p>}
                {isPast(selectedTime) && <p className="error-message">Selected date and time cannot be in the past.</p>}
-            </div>
+            {/* </div> */}
         </form>
->>>>>>> main
     );
 };
 export default SearchBar;
