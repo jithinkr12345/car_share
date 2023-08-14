@@ -10,8 +10,6 @@ import { PacmanLoader } from "react-spinners";
 import Cookies from 'universal-cookie';
 
 function PaymentModal(props) {
-	console.log("-----------modal");
-	console.log(props);
   const [show, setShow] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
   const [showFields, setShowFields] = useState(false);
@@ -26,18 +24,14 @@ function PaymentModal(props) {
 
   const fetchData = async () => {
     try {
-		console.log("---------etch----", rideid);
 		if (rideid !== 0 && rideid !== 'undefined' && apicall){
-			console.log("---------etch123----", rideid);
 			const response = await fetch('http://localhost:8000/api/rider/request?id=' + rideid);
 			const data = await response.json();
 			if(data && data[0] && data[0].state === "running"){
 				setLoading(false);
 				setApicall(false);
 				setDriverid(data[0].driver_id);
-			}
-			console.log("g123123", data);
-			
+			}			
 		}
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -55,8 +49,6 @@ function PaymentModal(props) {
 	props.handleFunction({rideid});
   })
   const handleShow = async () => {
-	console.log("button click");
-	console.log(props);
     const cookies = new Cookies();
 	try{
 		let amount = 0
@@ -71,7 +63,6 @@ function PaymentModal(props) {
 			amount = xlCost
 
 		}
-		console.log(amount);
 		const categ_response =  await fetch("http://127.0.0.1:8000/api/rider/request", {
 		  method: 'POST',
 		  headers: {'Content-Type': 'application/json'},
@@ -88,13 +79,8 @@ function PaymentModal(props) {
 		}).then(response => {
 		  return response.json();
 		}).then(data => {
-		  console.log(data);
 		  var ride_id = data.ride_id;
-		  console.log(data.ride_id);
-		  console.log(ride_id);
 		  setRideid(ride_id);
-		  console.log("TTTTTTTTTTTTTTTTTT");
-		  console.log(rideid);
 		});
 	  }
 	  catch (e){

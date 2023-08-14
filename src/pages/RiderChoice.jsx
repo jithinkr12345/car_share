@@ -23,20 +23,26 @@ function RideChoice() {
     var grid2 = "col-md-12";
   }
   const handleShowChooseRide = (obj) => {
+<<<<<<< HEAD
     console.log("objjjjjjj123123123", obj);
     setRegularCost(obj.regularCost);
     setComfortCost(obj.comfortCost);
     setXlCost(obj.xlCost);
     setDuration(obj, duration);
+=======
+    console.log("RiderChoice", obj);
+    setRegularCost(obj.calculateRegularCost);
+    setComfortCost(obj.calculateComfortCost);
+    setXlCost(obj.calculateXlCost);
+    setDuration(obj.dur);
+>>>>>>> main
     setPickup(obj.orginRef);
     setDropoff(obj.destinationRef);
     setRenderResponse(obj.directionResponse);
   }
 
   const handleShowRide = (obj) => {
-    console.log("objjjjjjjhandleShowRide123123123", obj);
     setRideid(obj.ride_id);
-    console.log(rideid);
   }
 
   return (

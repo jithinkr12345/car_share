@@ -16,7 +16,7 @@ function Dashboard(){
 					<p>Experience hassle-free transportation with our reliable and convenient ride services. Whether you need a ride to the airport, a quick trip across town, or a luxurious journey for a special occasion, we've got you covered.</p>
 				</div>
 				<div className="lower-container">
-					<button><Link to={'/rider'}>Get a Ride?</Link></button>
+					<button><Link to={'/rider-route'}>Get a Ride?</Link></button>
 				</div>
 			</div>
 			<div className="Card2 col-md-6">

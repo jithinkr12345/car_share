@@ -29,6 +29,7 @@ const SearchBar = (props) => {
     const [directionResponse, setDirectionResponse] = useState(null);
     const [distance, setDistance] = useState(0);
     const [duration, setDuration] = useState('');
+    var tot_amnt = 0;
 
     /** @type React.MutableRefObject<HTMLInputElement> */
     const orginRef = useRef();
@@ -36,7 +37,7 @@ const SearchBar = (props) => {
     /** @type React.MutableRefObject<HTMLInputElement> */
     const destinationRef = useRef();
 
-    const handlePickupChange = (event) => { console.log(event, 'eventttttt')
+    const handlePickupChange = (event) => { 
         setPickup(event.name);
     };
 
@@ -133,18 +134,21 @@ const SearchBar = (props) => {
       destination: destination,
       travelMode: window.google.maps.TravelMode.DRIVING, // You can also choose other travel modes like BICYCLING or WALKING
     };
+    var dist = (results.routes[0].legs[0].distance.value)/1000;
+    var dur = results.routes[0].legs[0].duration.text;
     try{
       const response =  await fetch("http://127.0.0.1:8000/api/user/price", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(
             {
-            "total_km": distance
+            "total_km": dist
           }
         )
       }).then(response => {
         return response.json();
       }).then(data => {
+        tot_amnt = data.total_price;
         setTotalAmount(data.total_price);
       });
     }
@@ -156,7 +160,7 @@ const SearchBar = (props) => {
       var calculateRegularCost = 0;
       var calculateComfortCost = 0;
       var calculateXlCost = 0;
-      const distanceInKm = distance/1000;
+      const distanceInKm = dist/1000;
       const categ_response =  await fetch("http://127.0.0.1:8000/api/rider/base_price", {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
@@ -166,15 +170,18 @@ const SearchBar = (props) => {
         data.map((key, value) => {
           if(key.category === 'Regular'){
             calculateRegularCost = (key.base_price/100);
-            setRegularCost(calculateRegularCost + totalAmount);
+            calculateRegularCost += tot_amnt;
+            setRegularCost(calculateRegularCost);
           }
           if(key.category === 'Comfort'){
             calculateComfortCost = key.base_price/100;
-            setComfortCost(calculateComfortCost + totalAmount);
+            calculateComfortCost += tot_amnt;
+            setComfortCost(calculateComfortCost);
           }
           if(key.category === 'XL'){
             calculateXlCost = key.base_price/100;
-            setXlCost(calculateXlCost + totalAmount);            
+            calculateXlCost += tot_amnt;
+            setXlCost(calculateXlCost);            
           }
         })
       });
@@ -182,8 +189,8 @@ const SearchBar = (props) => {
     catch (e){
       alert(e);
     }
-      console.log("Amount", regularCost, comfortCost, xlCost);
-      props.handleFunction({regularCost, comfortCost, xlCost, distance, duration, directionResponse, orginRef, destinationRef});
+    console.log("Regular, comfort, xl, distance, duration, directionresponse, orginref, destinationref", calculateRegularCost, calculateComfortCost, calculateXlCost, dist, dur, results, orginRef, destinationRef);
+    props.handleFunction({calculateRegularCost, calculateComfortCost, calculateXlCost, dist, dur, results, orginRef, destinationRef});
   };
 
     return (
@@ -232,6 +239,7 @@ const SearchBar = (props) => {
 </form>
 
 
+<<<<<<< HEAD
        
         //     <div className='row form-search'>
         //         <div className="col-md-3 pickup">
@@ -294,6 +302,45 @@ const SearchBar = (props) => {
         //        {isPast(selectedTime) && <p className="error-message">Selected date and time cannot be in the past.</p>}
         //     </div>
         
+=======
+                <div className='col-md-1 time'>
+                    <DatePicker
+                selected={selectedTime}
+                onChange={(time) => setSelectedTime(time)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={15}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
+                className="form-control"
+                placeholderText="Select time"
+                    />
+                </div>
+                <div className="col-md-2 category">
+                    <ButtonGroup>
+                        <DropdownButton
+                        title={selectedOption}
+                        variant="secondary"
+                        id="search-dropdown"
+                        onSelect={handleOptionSelect}
+                        >
+                        <Dropdown.Item eventKey="Select"> </Dropdown.Item>
+                        <Dropdown.Item eventKey="Car"> Car </Dropdown.Item>
+                        <Dropdown.Item eventKey="Bike"> Bike </Dropdown.Item>
+                        </DropdownButton>
+                    </ButtonGroup>
+                </div>
+                <div className='col-md-2 search-btn'>
+                    <button variant="primary" type="submit">Search</button>
+                </div>
+                {distance !== 0 && <p>Total distance: {distance} km</p>}
+                {/* {totalAmount !== null && <p>Total amount: ${totalAmount}</p>} */}
+                {duration !== '' && <p>Average duration: ${duration}</p>}
+                {selectedTime === null && <p className="error-message">Please select a valid date and time.</p>}
+               {isPast(selectedTime) && <p className="error-message">Selected date and time cannot be in the past.</p>}
+            </div>
+        </form>
+>>>>>>> main
     );
 };
 export default SearchBar;
