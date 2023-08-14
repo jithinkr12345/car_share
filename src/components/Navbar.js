@@ -4,7 +4,7 @@ import LocalTaxiIcon from '@mui/icons-material/LocalTaxi';
 import {Link} from 'react-router-dom';
 import "../assets/css/HeaderStyles.css";
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../assets/images/logo 1.jpg';
+import logo from '../assets/images/logo1.png';
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
@@ -102,9 +102,9 @@ const Header = () => {
               {name && <li>
                   <Link to={'/rider-route'}>Rider</Link>
                 </li>}
-                {name && <li>
+                {/* {name && <li>
                   <Link to={'/driver'}>Driver</Link>
-                </li>}
+                </li>} */}
                 {name && <li>
                   <Link to={'/dashboard'}>Dashboard</Link>
                 </li>}

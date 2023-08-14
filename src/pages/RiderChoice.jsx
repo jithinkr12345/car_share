@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
-import Footer from "../components/Footer";
+import { Footer } from "../components/Footer";
 import Map from "../components/map";
 import ChooseRide from "./ChooseRide";
 
@@ -23,11 +23,19 @@ function RideChoice() {
     var grid2 = "col-md-12";
   }
   const handleShowChooseRide = (obj) => {
+<<<<<<< HEAD
+    console.log("objjjjjjj123123123", obj);
+    setRegularCost(obj.regularCost);
+    setComfortCost(obj.comfortCost);
+    setXlCost(obj.xlCost);
+    setDuration(obj, duration);
+=======
     console.log("RiderChoice", obj);
     setRegularCost(obj.calculateRegularCost);
     setComfortCost(obj.calculateComfortCost);
     setXlCost(obj.calculateXlCost);
     setDuration(obj.dur);
+>>>>>>> main
     setPickup(obj.orginRef);
     setDropoff(obj.destinationRef);
     setRenderResponse(obj.directionResponse);
@@ -43,10 +51,10 @@ function RideChoice() {
         <SearchBar handleFunction={handleShowChooseRide} />
         <div className="row">
           <div className={grid1}>
-            {pickup ? <ChooseRide costData={{ regularCost, comfortCost, xlCost, pickup, dropoff, duration }}  handleFunction={handleShowRide} /> : null}
+            {pickup ? <ChooseRide costData={{ regularCost, comfortCost, xlCost, pickup, dropoff, duration }} handleFunction={handleShowRide} /> : null}
           </div>
           <div className={grid2}>
-            <Map direction={{renderResponse, pickup, dropoff, rideid}}/>
+            <Map direction={{ renderResponse, pickup, dropoff, rideid }} />
           </div>
         </div>
         <Footer />

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Home from "./HomeUI";
 import img1 from "../assets/images/driverr.png";
 import img2 from "../assets/images/Passenger1.jpg";
-import Slider from "../components/Slider";
+// import Slider from "../components/Slider";
 import TwoButton from "../components/Twobuttons";
-import Block from '../components/Block.js';
+import { Block, FrequentlyQuestion } from '../components/Block.js';
 import Flipcard from '../components/Flipcard';
 import back1 from '../assets/images/withroute.jpg';
 import back2 from '../assets/images/sunsetcarimage.jpg';
@@ -13,7 +13,8 @@ import back4 from '../assets/images/havingfun.jpg';
 import back5 from '../assets/images/mapwithroute.jpg';
 import back6 from '../assets/images/drivewithstair2.jpg';
 import back7 from '../assets/images/caroption.jpg';
-import Footer from '../components/Footer.js';
+import { Footer, QuoteCarousel } from '../components/Footer.js';
+import { HeaderBlock, Main } from "../components/HeaderBlock";
 
 class Homes extends Component {
 	constructor(props) {
@@ -23,7 +24,8 @@ class Homes extends Component {
 	render() {
 		return (
 			<div>
-				<Slider />
+				<HeaderBlock />
+				<Main />
 				<div className='block-head'>
 					<h2 style={{ alignContent: 'flex-start', padding: '15px', color: '#e69119', fontSize: '45px' }}>Services</h2>
 				</div>
@@ -46,26 +48,28 @@ class Homes extends Component {
 				<div className='block-head'>
 					<h2 style={{ alignContent: 'flex-start', padding: '15px', color: '#e69119', fontSize: '45px' }}>Features</h2>
 				</div>
-				<div style={{display:'flex', padding:'10px', marginLeft:'20px'}} >
-					<Flipcard style={{position: 'absolute'}} frontContent={<><img src={back1} style={{ height: '200px', width: '200px', margin: '5px' }}></img><div style={{position: 'absolute', top: '50%', left: '20%'}}><h4 style={{color: 'white'}}>Customize Ride</h4></div></>} backContent={<><img src={back1} style={{height:'200px', width:'200px', margin:'5px'}}></img>
-					<div style={{position: 'absolute', top: '50%', left: '20%'}}><h4 style={{color: 'white'}}>Customize</h4></div></>}/>
+				<div style={{ display: 'flex', padding: '10px', marginLeft: '20px' }} >
+					<Flipcard style={{ position: 'absolute' }} frontContent={<><img src={back1} style={{ height: '200px', width: '200px', margin: '5px' }}></img><div style={{ position: 'absolute', top: '50%', left: '20%' }}><h4 style={{ color: 'white' }}>Customize Ride</h4></div></>} backContent={<><img src={back1} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
+						<div style={{ position: 'absolute', top: '50%', left: '20%' }}><h4 style={{ color: 'white' }}>Customize</h4></div></>} />
 
-					<Flipcard style={{position: 'absolute'}} frontContent={<><img src={back2} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
-					<div style={{position: 'absolute', top: '50%', left: '40%'}}><h4 style={{color: 'white'}}>Fun</h4></div></>} backContent={<><img src={back2} style={{height:'200px', width:'200px', margin:'5px'}}></img><div style={{position: 'absolute', top: '50%', left: '20%'}}><h4 style={{color: 'white'}}>Customize Ride</h4></div></>} />
-					<Flipcard style={{position: 'absolute'}} frontContent={<><img src={back3} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
-					<div style={{position: 'absolute', top: '50%', left: '40%'}}><h4 style={{color: 'white'}}>Relax</h4></div></>} backContent={<><img src={back3} style={{height:'200px', width:'200px', margin:'5px'}}></img><div style={{position: 'absolute', top: '50%', left: '20%'}}><h4 style={{color: 'white'}}>Customize Ride</h4></div></>} />
-					<Flipcard style={{position: 'absolute'}} frontContent={<><img src={back4} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
-					<div style={{position: 'absolute', top: '50%', left: '25%'}}><h4 style={{color: 'white'}}>Safe Journey</h4></div></>} backContent={<><img src={back4} style={{height:'200px', width:'200px', margin:'5px'}}></img><div style={{position: 'absolute', top: '50%', left: '20%'}}><h4 style={{color: 'white'}}>Customize Ride</h4></div></>} />
-					<Flipcard style={{position: 'absolute'}} frontContent={<><img src={back5} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
-					<div style={{position: 'absolute', top: '50%', left: '40%'}}><h4 style={{color: 'white'}}>Luxury</h4></div></>} backContent={<><img src={back5} style={{height:'200px', width:'200px', margin:'5px'}}></img><div style={{position: 'absolute', top: '50%', left: '20%'}}><h4 style={{color: 'white'}}>Customize Ride</h4></div></>} />
-					<Flipcard style={{position: 'absolute'}} frontContent={<><img src={back6} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
-					<div style={{position: 'absolute', top: '50%', left: '40%'}}><h4 style={{color: 'white'}}>Rider</h4></div></>} backContent={<><img src={back6} style={{height:'200px', width:'200px', margin:'5px'}}></img>
-					<div style={{position: 'absolute', top: '50%', left: '20%'}}><h4 style={{color: 'white'}}>Customize Ride</h4></div></>} />
-					<Flipcard style={{position: 'absolute'}} frontContent={<><img src={back7} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
-					<div style={{position: 'absolute', top: '50%', left: '40%'}}><h4 style={{color: 'white'}}>Find Cars</h4></div></>} backContent={<><img src={back7} style={{height:'200px', width:'200px', margin:'5px'}}></img>
-					<div style={{position: 'absolute', top: '50%', left: '20%'}}><h4 style={{color: 'white'}}>Customize Ride</h4></div></>} />
+					<Flipcard style={{ position: 'absolute' }} frontContent={<><img src={back2} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
+						<div style={{ position: 'absolute', top: '50%', left: '40%' }}><h4 style={{ color: 'white' }}>Fun</h4></div></>} backContent={<><img src={back2} style={{ height: '200px', width: '200px', margin: '5px' }}></img><div style={{ position: 'absolute', top: '50%', left: '20%' }}><h4 style={{ color: 'white' }}>Customize Ride</h4></div></>} />
+					<Flipcard style={{ position: 'absolute' }} frontContent={<><img src={back3} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
+						<div style={{ position: 'absolute', top: '50%', left: '40%' }}><h4 style={{ color: 'white' }}>Relax</h4></div></>} backContent={<><img src={back3} style={{ height: '200px', width: '200px', margin: '5px' }}></img><div style={{ position: 'absolute', top: '50%', left: '20%' }}><h4 style={{ color: 'white' }}>Customize Ride</h4></div></>} />
+					<Flipcard style={{ position: 'absolute' }} frontContent={<><img src={back4} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
+						<div style={{ position: 'absolute', top: '50%', left: '25%' }}><h4 style={{ color: 'white' }}>Safe Journey</h4></div></>} backContent={<><img src={back4} style={{ height: '200px', width: '200px', margin: '5px' }}></img><div style={{ position: 'absolute', top: '50%', left: '20%' }}><h4 style={{ color: 'white' }}>Customize Ride</h4></div></>} />
+					<Flipcard style={{ position: 'absolute' }} frontContent={<><img src={back5} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
+						<div style={{ position: 'absolute', top: '50%', left: '40%' }}><h4 style={{ color: 'white' }}>Luxury</h4></div></>} backContent={<><img src={back5} style={{ height: '200px', width: '200px', margin: '5px' }}></img><div style={{ position: 'absolute', top: '50%', left: '20%' }}><h4 style={{ color: 'white' }}>Customize Ride</h4></div></>} />
+					<Flipcard style={{ position: 'absolute' }} frontContent={<><img src={back6} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
+						<div style={{ position: 'absolute', top: '50%', left: '40%' }}><h4 style={{ color: 'white' }}>Rider</h4></div></>} backContent={<><img src={back6} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
+							<div style={{ position: 'absolute', top: '50%', left: '20%' }}><h4 style={{ color: 'white' }}>Customize Ride</h4></div></>} />
+					<Flipcard style={{ position: 'absolute' }} frontContent={<><img src={back7} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
+						<div style={{ position: 'absolute', top: '50%', left: '40%' }}><h4 style={{ color: 'white' }}>Find Cars</h4></div></>} backContent={<><img src={back7} style={{ height: '200px', width: '200px', margin: '5px' }}></img>
+							<div style={{ position: 'absolute', top: '50%', left: '20%' }}><h4 style={{ color: 'white' }}>Customize Ride</h4></div></>} />
 				</div>
-				<Footer/>
+				{/* <FrequentlyQuestion /> */}
+				<QuoteCarousel />
+				<Footer />
 			</div>
 
 		);
